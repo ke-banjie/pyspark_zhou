@@ -1,0 +1,10 @@
+1,aa,beijing
+2,bb,shanghai
+3,cc,
+4,,guangzhou
+5,dd,beijing
+6,ee,shanghai
+7,ff,beijing
+8,gg,guangzhou
+9,hh,shenzhen
+10,ii,guangzhou

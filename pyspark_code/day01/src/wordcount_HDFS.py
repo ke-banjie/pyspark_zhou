@@ -10,11 +10,11 @@ os.environ['PYSPARK_DRIVER_PYTHON'] = '/root/anaconda3/bin/python3'
 
 if __name__ == '__main__':
     # 1、创建Spark顶级对象
-    conf = SparkConf().setAppName('词频统计').setMaster('local[*]')
+    conf = SparkConf().setAppName('词频统计').setMaster('yarn')
     sc = SparkContext(conf=conf)
 
     # 2、数据读取
-    init_RDD = sc.textFile('hdfs://node1:8020/content.txt')
+    init_RDD = sc.textFile('hdfs://node1:8020/data/content.txt')
     # 3、处理数据
     # 3_1 文本内容切分flatMap
     flatMap_RDD = init_RDD.flatMap(lambda line:line.split(' '))

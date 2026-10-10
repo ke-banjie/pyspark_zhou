@@ -29,9 +29,9 @@ if __name__ == '__main__':
     """
     #1- sortByKey
 
-    # result = reducebykey_RDD.map(lambda word:(word[1],word[0]))\
+    # result = reducebykey_RDD.map(lambda word.txt:(word.txt[1],word.txt[0]))\
     #     .sortByKey(ascending=False)\
-    #     .map(lambda word:(word[1],word[0]))\
+    #     .map(lambda word.txt:(word.txt[1],word.txt[0]))\
     #     .collect()
 
     #2- sortBY

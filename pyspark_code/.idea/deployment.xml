@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="root@192.168.88.161:22 password" remoteFilesAllowedToDisappearOnAutoupload="false" showNewOnSourceInSync="false">
+  <component name="PublishConfigData" autoUpload="Always" serverName="root@192.168.88.161:22 password (11)" remoteFilesAllowedToDisappearOnAutoupload="false" showNewOnSourceInSync="false">
     <serverData>
       <paths name="root@192.168.88.161:22 password">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/export/data/pyspark_code" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="root@192.168.88.161:22 password (10)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/export/data/pyspark_code" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="root@192.168.88.161:22 password (11)">
         <serverdata>
           <mappings>
             <mapping deploy="/export/data/pyspark_code" local="$PROJECT_DIR$" />
@@ -38,6 +52,27 @@
         </serverdata>
       </paths>
       <paths name="root@192.168.88.161:22 password (6)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/export/data/pyspark_code" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="root@192.168.88.161:22 password (7)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/export/data/pyspark_code" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="root@192.168.88.161:22 password (8)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/tmp/pycharm_project_94" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="root@192.168.88.161:22 password (9)">
         <serverdata>
           <mappings>
             <mapping deploy="/export/data/pyspark_code" local="$PROJECT_DIR$" />

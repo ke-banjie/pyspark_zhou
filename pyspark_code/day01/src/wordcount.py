@@ -8,7 +8,7 @@ os.environ['PYSPARK_DRIVER_PYTHON'] = '/root/anaconda3/bin/python3'
 
 if __name__ == '__main__':
     # 1、创建Spark顶级对象
-    conf = SparkConf().setAppName('词频统计').setMaster('yarn')
+    conf = SparkConf().setAppName('词频统计').setMaster('local[*]')
     sc = SparkContext(conf=conf)
 
     # 2、数据读取
@@ -19,9 +19,9 @@ if __name__ == '__main__':
     # 3_2 数据格式转换map
     map_RDD = flatMap_RDD.map(lambda word:(word,1))
     # 3_3 分组聚合reduceBykey
-    reducebykey_RDD = map_RDD.reduceByKey(lambda agg,curr:agg+curr)
+    reduceBykey_RDD = map_RDD.reduceByKey(lambda agg,curr:agg+curr)
 
-    result = reducebykey_RDD.collect()
+    result = reduceBykey_RDD.collect()
 
     # 4、输出数据
     print(result)
