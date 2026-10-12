@@ -1,0 +1,3 @@
+hello spark hadoop hive oozie
+sqoop hello hive hadoop java
+java python hadoop hive hadoop
