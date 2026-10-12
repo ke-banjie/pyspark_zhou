@@ -16,11 +16,11 @@ if __name__ == '__main__':
 
     #读数据
     init_df = spark.read.csv(
-        path="hdfs://node1:8020/data/data.txt",
-        schema="id int, name string, address string, sex string, age int",
-        encoding='utf-8',
+        path="hdfs://node1:8020/data/clear_data.csv",
+        schema="id int, name string, age int, address string",
+        encoding='UTF-8',
         header=True,
-        sep=' '
+        sep=','
     )
 
     init_df.show()
