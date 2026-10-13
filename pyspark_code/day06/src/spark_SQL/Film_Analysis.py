@@ -31,49 +31,49 @@ if __name__ == '__main__':
 
     #需求一：查询用户平均打分
     #--SQL写法
-    userAvg_df1 = spark.sql("""
-    select 
-    user_id, 
-    round(avg(score) ,2) as user_avg_score,
-    min(score) as user_min_score,
-    max(score) as user_max_score
-    from film
-    group by user_id
-    """)
-
-    userAvg_df1.show()
-    userAvg_df1.printSchema()
-
-    #DSL写法
-    userAvg_df2 = init_df.groupBy("user_id").agg(
-        F.round(F.avg("score"), 2).alias("user_avg_score"),
-        F.min("score").alias("user_min_score"),
-        F.max("score").alias("user_max_score")
-    )
-
-    userAvg_df2.show()
-    userAvg_df2.printSchema()
+    # userAvg_df1 = spark.sql("""
+    # select
+    # user_id,
+    # round(avg(score) ,2) as user_avg_score,
+    # min(score) as user_min_score,
+    # max(score) as user_max_score
+    # from film
+    # group by user_id
+    # """)
+    #
+    # userAvg_df1.show()
+    # userAvg_df1.printSchema()
+    #
+    # #DSL写法
+    # userAvg_df2 = init_df.groupBy("user_id").agg(
+    #     F.round(F.avg("score"), 2).alias("user_avg_score"),
+    #     F.min("score").alias("user_min_score"),
+    #     F.max("score").alias("user_max_score")
+    # )
+    #
+    # userAvg_df2.show()
+    # userAvg_df2.printSchema()
 
     #需求二：查询每部电影的平均分
     """
     需求分析：查询每部电影的平均分需要对每部电影进行分组，然后求平均分
     """
-    requirement2_1 = spark.sql("""
-        select 
-        film_id,
-        round(avg(score), 2) as film_avg
-        from film
-        group by film_id
-    """)
-    requirement2_1.show()
-    requirement2_1.printSchema()
-
-    #DSL写法
-    requirement2_2 = init_df.groupBy("film_id").agg(
-        F.round(F.avg("score"),2).alias("film_avg")
-    )
-
-    requirement2_2.show()
+    # requirement2_1 = spark.sql("""
+    #     select
+    #     film_id,
+    #     round(avg(score), 2) as film_avg
+    #     from film
+    #     group by film_id
+    # """)
+    # requirement2_1.show()
+    # requirement2_1.printSchema()
+    #
+    # #DSL写法
+    # requirement2_2 = init_df.groupBy("film_id").agg(
+    #     F.round(F.avg("score"),2).alias("film_avg")
+    # )
+    #
+    # requirement2_2.show()
 
     # 需求三：查询大于平均分的电影的数量
     """
@@ -81,6 +81,60 @@ if __name__ == '__main__':
     2、查询所有电影总的平均分
     3、过滤出大于总的平均分的电影
     """
+    #SQL写法
+    # 1- 查询每部电影的平均分
+    film_avg_score = spark.sql(
+        """
+        select film_id,
+        round(avg(score), 2) film_avg_score
+        from film
+        group by film_id
+        """
+    )
+    film_avg_score.createTempView("F1")
+    # 2- 查询所有电影总的平均分
+    avg_Score = spark.sql(
+        """
+        select
+        round(avg(score), 2) avg_score
+        from film
+        """
+    )
+    avg_Score.createTempView("F2")
+
+    # 3- 过滤出大于总的平均分的电影
+    Hight_avg_score = spark.sql(
+        """
+        select
+        count(1) cnt
+        from F1 left join F2
+        where F1.film_avg_score > F2.avg_score
+        """
+    )
+
+    Hight_avg_score.show()
+
+    # DSL写法
+    # 1- 查询每部电影的平均分
+    film_avg_scoreDF = ETL_df.groupBy("film_id").agg(
+        F.round(F.avg("score"), 2).alias("film_avg_score1")
+    )
+    #2- 查询所有电影总的平均分
+    # avg_scoreDF = ETL_df.agg(
+    #     F.avg("score").alias("avg_score1")
+    # )
+    avg_scoreDF = ETL_df.select(
+        F.avg("score").alias("avg_score1")
+    )
+    #3、过滤出大于总的平均分的电影
+    count_film = film_avg_scoreDF.join(avg_scoreDF,how="left")\
+        .where(
+        film_avg_scoreDF.film_avg_score1 > avg_scoreDF.avg_score1
+    ).agg(
+        F.count("film_id").alias("cnt")
+    ).show()
+
+
     #数据输出
 
 
