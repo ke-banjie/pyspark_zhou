@@ -124,7 +124,7 @@ if __name__ == '__main__':
     #     F.avg("score").alias("avg_score1")
     # )
     avg_scoreDF = ETL_df.select(
-        F.avg("score").alias("avg_score1")
+        F.round(F.avg("score"), 2).alias("avg_score1")
     )
     #3、过滤出大于总的平均分的电影
     count_film = film_avg_scoreDF.join(avg_scoreDF,how="left")\
