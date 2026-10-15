@@ -34,7 +34,7 @@ if __name__ == '__main__':
     #需求一：统计各个国家有多少的客户量
     Cou_custom_num = etl_df.groupBy("Country").agg(
         F.countDistinct("CustomerId").alias("Custom_num")
-    ).show()
+    )
 
     #需求二: 销量最高的10个国家
     sale_cou = etl_df.groupBy("Country").agg(
@@ -43,15 +43,28 @@ if __name__ == '__main__':
 
     #需求三: 统计各个国家的总销售额分布情况
 
-    total_sale_cou = sale_cou.join(etl_df,on="Country", how="left")\
+    total_sale_cou = sale_cou.join(etl_df, on="Country", how="left")\
         .groupBy("Country") \
         .agg(F.expr("SUM(Quantity1 * UnitPrice)").alias("sale"))\
         .show(20, truncate=False)
 
 
-    #需求四: 销售最高10个商品
+    #需求四: 销量最高10个商品
+    sale_top = etl_df.groupBy("InvoiceNo").agg(
+        F.sum("Quantity").alias("sale_volume")
+    ).sort("sale_volume", ascending=False).limit(10).show()
+
     #需求五: 商品描述的热门关键词TOP300
+
     #需求六: 统计退货订单数最多的10个国家
+    return_p = etl_df.groupBy("Country").agg(
+        F.count(F.when(etl_df.Quantity < 0, 1)).alias("return_goods")
+    )\
+    .sort("return_goods", ascending=False)\
+    .limit(10).show()
+
+
+
     #需求七: 商品的平均单价与销量的关系
     #需求八: 月销售额随时间的变化趋势
     #需求九: 日销售随时间的变化趋势
