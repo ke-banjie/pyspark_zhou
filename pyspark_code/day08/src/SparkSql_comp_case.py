@@ -58,14 +58,16 @@ if __name__ == '__main__':
 
     #需求六: 统计退货订单数最多的10个国家
     return_p = etl_df.groupBy("Country").agg(
-        F.count(F.when(etl_df.Quantity < 0, 1)).alias("return_goods")
+        F.abs(F.sum(F.when(etl_df.Quantity < 0, etl_df.Quantity))).alias("return_goods")
     )\
     .sort("return_goods", ascending=False)\
     .limit(10).show()
 
-
-
     #需求七: 商品的平均单价与销量的关系
+    avgPrice_sale = etl_df.groupBy("InvoiceNo", "Quantity").agg(
+        F.round(F.avg("UnitPrice"), 2).alias("avg_price"),
+    ).alias("avg_price_sale")
+    avgPrice_sale.show()
     #需求八: 月销售额随时间的变化趋势
     #需求九: 日销售随时间的变化趋势
     #需求十: 各国的购买订单量和退货订单量的关系
