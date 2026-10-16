@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="root@192.168.88.161:22 password (11)" remoteFilesAllowedToDisappearOnAutoupload="false" showNewOnSourceInSync="false">
+  <component name="PublishConfigData" autoUpload="Always" serverName="root@192.168.88.161:22 password (14)" remoteFilesAllowedToDisappearOnAutoupload="false" showNewOnSourceInSync="false">
     <serverData>
       <paths name="root@192.168.88.161:22 password">
         <serverdata>
@@ -17,6 +17,27 @@
         </serverdata>
       </paths>
       <paths name="root@192.168.88.161:22 password (11)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/export/data/pyspark_code" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="root@192.168.88.161:22 password (12)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/export/data/pyspark_code" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="root@192.168.88.161:22 password (13)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/tmp/pycharm_project_947" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="root@192.168.88.161:22 password (14)">
         <serverdata>
           <mappings>
             <mapping deploy="/export/data/pyspark_code" local="$PROJECT_DIR$" />
